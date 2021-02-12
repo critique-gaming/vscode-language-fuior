@@ -1,0 +1,41 @@
+{
+    "simpleTerms": {
+        "comment": "comment",
+        "command_verb": "function",
+        "number": "number",
+        "string": "string",
+        "boolean": "constant",
+        "text_actor": "variable",
+        "text_copy": "string",
+        "text_animation": "modifier"
+    },
+
+    "complexTerms": [
+        "\"if\"",
+        "\"else\"",
+        "\"elseif\"",
+        "\"end\"",
+        "\"choose\"",
+        "stat_lvalue",
+        "\"end\"",
+        "\"*\"",
+        "\"not\"",
+        "\"and\"",
+        "\"or\""
+    ],
+
+    "complexScopes": {
+        "if_statement > \"if\"": "control", 
+        "else_clause > \"else\"": "control", 
+        "elseif_clause > \"elseif\"": "control", 
+        "if_statement > \"end\"": "control", 
+        "choose_statement > \"choose\"": "control", 
+
+        "stat_operation > stat_lvalue": "variable",
+        "choose_statement > \"end\"": "control",
+        "choice > \"*\"": "modifier",
+        "unary_expression > \"not\"": "operator",
+        "binary_expression > \"and\"": "operator",
+        "binary_expression > \"or\"": "operator"
+    }
+}

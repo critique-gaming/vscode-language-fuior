@@ -70,7 +70,8 @@ class Grammar {
             else {
                 node = stack.pop();
                 let type = node.type;
-                if (!node.isNamed())
+                // @ts-ignore
+                if (!node.isNamed()) 
                     type = '"' + type + '"';
 
                 // Simple one-level terms
@@ -86,6 +87,7 @@ class Grammar {
                     let parent = node.parent;
                     for (let i = 0; i < this.complexDepth && parent; i++) {
                         let parentType = parent.type;
+                        // @ts-ignore
                         if (!parent.isNamed())
                             parentType = '"' + parentType + '"';
                         desc = parentType + " > " + desc;
@@ -191,15 +193,15 @@ class TokensProvider implements vscode.DocumentSemanticTokensProvider, vscode.Ho
             "constant", "directive", "control", "operator", "modifier", "punctuation",
         ];
         const enabledTerms: string[] = vscode.workspace.
-            getConfiguration("syntax").get("highlightTerms");
+            getConfiguration("fuior").get("highlightTerms");
         availableTerms.forEach(term => {
             if (enabledTerms.includes(term))
                 this.supportedTerms.push(term);
         });
-        if (!vscode.workspace.getConfiguration("syntax").get("highlightComment"))
+        if (!vscode.workspace.getConfiguration("fuior").get("highlightComment"))
             if (this.supportedTerms.includes("comment"))
                 this.supportedTerms.splice(this.supportedTerms.indexOf("comment"), 1);
-        this.debugDepth = vscode.workspace.getConfiguration("syntax").get("debugDepth");
+        this.debugDepth = vscode.workspace.getConfiguration("fuior").get("debugDepth");
     }
 
     // Provide document tokens
@@ -256,6 +258,7 @@ class TokensProvider implements vscode.DocumentSemanticTokensProvider, vscode.Ho
             return null;
 
         let type = node.type;
+        // @ts-ignore
         if (!node.isNamed())
             type = '"' + type + '"';
         let parent = node.parent;
@@ -263,6 +266,7 @@ class TokensProvider implements vscode.DocumentSemanticTokensProvider, vscode.Ho
         const depth = Math.max(grammar.complexDepth, this.debugDepth);
         for (let i = 0; i < depth && parent; i++) {
             let parentType = parent.type;
+            // @ts-ignore
             if (!parent.isNamed())
                 parentType = '"' + parentType + '"';
             type = parentType + " > " + type;
@@ -314,8 +318,7 @@ export async function activate(context: vscode.ExtensionContext) {
         availableParsers.push(path.basename(name, ".wasm"));
     });
 
-    const enabledLangs: string[] =
-        vscode.workspace.getConfiguration("syntax").get("highlightLanguages");
+    const enabledLangs: string[] = ["fuior"];
     let supportedLangs: { language: string }[] = [];
     availableGrammars.forEach(lang => {
         if (availableParsers.includes(lang) && enabledLangs.includes(lang))
@@ -329,7 +332,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
     // Register debug hover providers
     // Very useful tool for implementation and fixing of grammars
-    if (vscode.workspace.getConfiguration("syntax").get("debugHover"))
+    if (vscode.workspace.getConfiguration("fuior").get("debugHover"))
         for (const lang of supportedLangs)
             vscode.languages.registerHoverProvider(lang, engine);
 }
