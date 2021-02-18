@@ -93,7 +93,7 @@
             }
         ],
         "configuration": {
-            "title": "{Syntax Highlighter} configuration",
+            "title": "Fuior",
             "properties": {
                 "fuior.highlightComment": {
                     "description": "Enable highlighting of comments",
