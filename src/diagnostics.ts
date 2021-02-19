@@ -188,7 +188,7 @@ export function refreshDiagnostics(
   handler.refresh();
 }
 
-export const subscribeToDocumentChanges = (
+export const activateDiagnostics = (
   context: vscode.ExtensionContext
 ) => {
   const fuiorDiagnostics = vscode.languages.createDiagnosticCollection("fuior");
