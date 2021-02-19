@@ -3,7 +3,7 @@
     "displayName": "Fuior",
     "description": "Syntax highlighting and language support for Fuior (narrative DSL)",
     "homepage": "https://github.com/critique-gaming/vscode-language-fuior",
-    "version": "0.2.1",
+    "version": "0.3.0",
     "publisher": "critique-gaming",
     "license": "MIT",
     "icon": "images/icon.png",
@@ -78,7 +78,7 @@
                 }
             ]
         },
-        "keybindings":[
+        "keybindings": [
             {
                 "command": "fuior.runInGame",
                 "key": "ctrl+alt+cmd+r",
