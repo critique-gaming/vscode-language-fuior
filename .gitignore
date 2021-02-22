@@ -1,3 +1,5 @@
 node_modules
 parsers
 out
+.DS_Store
+*.sw*
