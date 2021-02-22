@@ -3,7 +3,8 @@ import * as path from "path";
 import fetch from "node-fetch";
 
 async function notifyGame(endpoint) {
-  const url = `http://127.0.0.1:3648${endpoint}`;
+  const gameUrl = vscode.workspace.getConfiguration("fuior").get("gameServerURL");
+  const url = `${gameUrl}${endpoint}`;
   try {
     const res = await fetch(url);
     const data = await res.json();

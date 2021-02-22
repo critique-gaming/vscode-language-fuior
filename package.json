@@ -119,6 +119,11 @@
         "configuration": {
             "title": "Fuior",
             "properties": {
+                "fuior.gameServerURL": {
+                    "description": "URL to the hot reload server of the game",
+                    "type": "string",
+                    "default": "http://127.0.0.1:3648"
+                },
                 "fuior.highlightComment": {
                     "description": "Enable highlighting of comments",
                     "type": "boolean",
