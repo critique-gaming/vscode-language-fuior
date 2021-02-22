@@ -55,7 +55,7 @@ class DiagnosticHandler {
       osname = "Darwin";
     } else if (osname.startsWith("win")) {
       osname = "Windows";
-      extension = ".exe.";
+      extension = ".exe";
     } else if (osname.startsWith("linux")) {
       osname = "Linux";
     }
