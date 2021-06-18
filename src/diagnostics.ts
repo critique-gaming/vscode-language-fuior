@@ -88,6 +88,12 @@ class DiagnosticHandler {
 
     const fuiorArgs = ["-", "--no-generate", "--error-ranges"];
 
+    const workspaceDir = vscode.workspace.getWorkspaceFolder(this.document.uri).uri.fsPath;
+    if (workspaceDir) {
+      fuiorArgs.push("--import-root");
+      fuiorArgs.push(workspaceDir);
+    }
+
     if (this.headerPath) {
       fuiorArgs.push("--header");
       fuiorArgs.push(this.headerPath);
