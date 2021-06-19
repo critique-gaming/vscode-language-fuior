@@ -57,17 +57,20 @@ class Grammar {
   parse(tree: parser.Tree) {
     // Travel tree and peek terms
     let terms: { term: string; range: vscode.Range }[] = [];
-    let stack: parser.SyntaxNode[] = [];
+    let stack: { node: parser.SyntaxNode, startIndex: number }[] = [];
     let node = tree.rootNode.firstChild;
+    let startIndex : number = 0;
     while (stack.length > 0 || node) {
       // Go deeper
       if (node) {
-        stack.push(node);
+        stack.push({ node, startIndex: terms.length });
         node = node.firstChild;
       }
       // Go back
       else {
-        node = stack.pop();
+        let obj = stack.pop();
+        node = obj.node;
+        startIndex = obj.startIndex;
         let type = node.type;
         // @ts-ignore
         if (!node.isNamed()) type = '"' + type + '"';
@@ -123,16 +126,29 @@ class Grammar {
 
         // If term is found add it
         if (term) {
-          terms.push({
-            term: term,
-            range: new vscode.Range(
-              new vscode.Position(
-                node.startPosition.row,
-                node.startPosition.column
-              ),
-              new vscode.Position(node.endPosition.row, node.endPosition.column)
+          let range = new vscode.Range(
+            new vscode.Position(
+              node.startPosition.row,
+              node.startPosition.column
             ),
-          });
+            new vscode.Position(node.endPosition.row, node.endPosition.column)
+          );
+
+          // Check for overlaps
+          for (let i = startIndex, n = terms.length; i < n; i += 1) {
+            const otherRange = terms[i].range;
+            if (range.contains(otherRange)) {
+              const adjustedRange = range.with(undefined, otherRange.start);
+              range = range.with(otherRange.end);
+              if (!adjustedRange.isEmpty) {
+                terms.push({ term, range: adjustedRange });
+              }
+            }
+          }
+
+          if (!range.isEmpty) {
+            terms.push({ term, range });
+          }
         }
         // Go right
         node = node.nextSibling;

@@ -7,5 +7,9 @@
         ["\"", "\""],
         [ "(", ")" ],
         [ "[", "]" ],
-    ]
+    ],
+    "indentationRules": {
+        "increaseIndentPattern": "^\\s*(if|choose|meta|command|\\*)(\\s|$)",
+        "decreaseIndentPattern": "^\\s*(end|\\*)"
+    }
 }

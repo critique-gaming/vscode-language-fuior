@@ -1,40 +1,113 @@
 {
     "simpleTerms": {
         "comment": "comment",
-        "command_verb": "function",
         "number": "number",
         "string": "string",
+        "intl_string": "string",
+        "escape_sequence": "operator",
+        "string_interpolation": "none",
         "boolean": "constant",
+
+        "var_name": "variable",
+
         "text_actor": "variable",
         "text_copy": "string",
-        "text_animation": "modifier"
+        "text_animation": "modifier",
+
+        "command_verb": "function",
+        "command_name": "function",
+        "type_identifier": "type",
+        "arg_name": "variable"
     },
 
     "complexTerms": [
+        "identifier",
+        "assign_lvalue",
+        "decorator_name",
         "\"if\"",
         "\"else\"",
         "\"elseif\"",
         "\"end\"",
         "\"choose\"",
-        "stat_lvalue",
         "\"end\"",
         "\"*\"",
+        "\"${\"",
+        "\"}\"",
+        "\"meta\"",
+        "\"declare\"",
+        "\"command\"",
+        "\"define\"",
+        "\"return\"",
+        "\"var\"",
+        "\"@\"",
+        "\"?\"",
+        "\"|\"",
+        "\"&\"",
+        "\"-\"",
         "\"not\"",
+        "\"*\"",
+        "\"/\"",
+        "\"+\"",
+        "\"-\"",
+        "\"<\"",
+        "\">\"",
+        "\">=\"",
+        "\"<=\"",
+        "\"=\"",
+        "\"!=\"",
         "\"and\"",
         "\"or\""
     ],
 
     "complexScopes": {
+        "function_call > identifier": "function",
+
+        "string_interpolation > \"${\"": "operator",
+        "string_interpolation > \"}\"": "operator",
+
         "if_statement > \"if\"": "control", 
         "else_clause > \"else\"": "control", 
         "elseif_clause > \"elseif\"": "control", 
         "if_statement > \"end\"": "control", 
-        "choose_statement > \"choose\"": "control", 
 
-        "stat_operation > stat_lvalue": "variable",
+        "return_statement > \"return\"": "control", 
+
+        "declare_command_statement > \"declare\"": "control",
+        "declare_command_statement > \"command\"": "control",
+        "define_command_statement > \"command\"": "control",
+        "define_command_statement > \"end\"": "control",
+
+        "declare_var_statement > \"var\"": "control",
+        "declare_var_decorator > \"@\"": "control",
+        "declare_var_decorator > decorator_name": "control",
+
+        "assign_statement > assign_lvalue": "variable",
+        "assign_statement > \"=\"": "operator",
+        "assign_statement > \"+\"": "operator",
+        "assign_statement > \"-\"": "operator",
+
+        "choose_statement > \"choose\"": "control", 
         "choose_statement > \"end\"": "control",
         "choice > \"*\"": "modifier",
+        "choice_meta > \"meta\"": "control", 
+        "choice_meta > \"end\"": "control", 
+
+        "unary_type_expression > \"?\"": "operator",
+        "binary_type_expression > \"|\"": "operator",
+        "binary_type_expression > \"&\"": "operator",
+
+        "unary_expression > \"-\"": "operator",
         "unary_expression > \"not\"": "operator",
+        "binary_expression > \"*\"": "operator",
+        "binary_expression > \"/\"": "operator",
+        "binary_expression > \"+\"": "operator",
+        "binary_expression > \"-\"": "operator",
+        "binary_expression > \"<\"": "operator",
+        "binary_expression > \">\"": "operator",
+        "binary_expression > \">=\"": "operator",
+        "binary_expression > \"<=\"": "operator",
+        "binary_expression > \"=\"": "operator",
+        "binary_expression > \"!=\"": "operator",
         "binary_expression > \"and\"": "operator",
         "binary_expression > \"or\"": "operator"
     }
