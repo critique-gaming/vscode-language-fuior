@@ -32,6 +32,7 @@ export function activateNotify(context: vscode.ExtensionContext) {
       const data = JSON.stringify({
         data: editor.document.getText(),
         filename: path.basename(editor.document.uri.fsPath),
+        variables: vscode.workspace.getConfiguration("fuior").get("variableOverrides"),
       });
 
       const base64Encoded = Buffer.from(data, "utf8").toString("base64");

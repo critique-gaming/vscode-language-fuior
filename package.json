@@ -124,6 +124,12 @@
                     "type": "string",
                     "default": "http://127.0.0.1:3648"
                 },
+                "fuior.variableOverrides": {
+                    "description": "Variables to set before hot reloading",
+                    "type": "object",
+                    "default": {},
+                    "additionalProperties": true
+                },
                 "fuior.highlightComment": {
                     "description": "Enable highlighting of comments",
                     "type": "boolean",
