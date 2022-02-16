@@ -7,6 +7,7 @@
         "escape_sequence": "operator",
         "string_interpolation": "none",
         "boolean": "constant",
+        "nil": "constant",
 
         "var_name": "variable",
 
@@ -65,12 +66,12 @@
         "string_interpolation > \"${\"": "operator",
         "string_interpolation > \"}\"": "operator",
 
-        "if_statement > \"if\"": "control", 
-        "else_clause > \"else\"": "control", 
-        "elseif_clause > \"elseif\"": "control", 
-        "if_statement > \"end\"": "control", 
+        "if_statement > \"if\"": "control",
+        "else_clause > \"else\"": "control",
+        "elseif_clause > \"elseif\"": "control",
+        "if_statement > \"end\"": "control",
 
-        "return_statement > \"return\"": "control", 
+        "return_statement > \"return\"": "control",
 
         "declare_command_statement > \"declare\"": "control",
         "declare_command_statement > \"command\"": "control",
@@ -86,11 +87,11 @@
         "assign_statement > \"+\"": "operator",
         "assign_statement > \"-\"": "operator",
 
-        "choose_statement > \"choose\"": "control", 
+        "choose_statement > \"choose\"": "control",
         "choose_statement > \"end\"": "control",
         "choice > \"*\"": "modifier",
-        "choice_meta > \"meta\"": "control", 
-        "choice_meta > \"end\"": "control", 
+        "choice_meta > \"meta\"": "control",
+        "choice_meta > \"end\"": "control",
 
         "unary_type_expression > \"?\"": "operator",
         "binary_type_expression > \"|\"": "operator",
